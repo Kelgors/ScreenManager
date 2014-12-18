@@ -1,0 +1,25 @@
+/**
+ * <%= pkg.name %> - <%= pkg.description %>
+ * @version v<%= pkg.version %>
+ * @link <%= pkg.homepage %>
+ * @license <%= pkg.license %>
+**/
+(function (root, factory) {
+  'use strict';
+  // Set up <%= pkg.name %> appropriately for the environment. Start with AMD.
+  if (typeof define === 'function' && define.amd) {
+    define(['lodash', 'jquery'], function (_, $) {
+      // Export global even in AMD case in case this script is loaded with
+      // others that may still expect a global <%= pkg.name %>.
+      root.screens = factory(root, {}, _, $);
+    });
+  } else {
+    // Finally, as a browser global.
+    root.screens = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$));
+  }
+
+})(this, function (root, container, _, $) {
+  'use strict';
+  __JAVASCRIPT__CONTENT__
+  return container;
+});
